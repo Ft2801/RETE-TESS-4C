@@ -1,0 +1,140 @@
+% Autore originale: Fabio Tempera
+% Licenza: MIT
+% Pacchetti dei documenti generici TESS-4C.
+% Non introdurre Markdown. Figure in [ht!],
+% caption e label in coda. Nessun comando \\ per spezzare il rigo nel testo.
+% URL e stringhe a spaziatura fissa spezzano il rigo senza uscire dai margini.
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{a4paper, top=2.8cm, bottom=2.8cm, left=2.5cm, right=2.5cm, headheight=22pt}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{tikz}
+\usetikzlibrary{calc,patterns,arrows.meta,positioning}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage[htt]{hyphenat}
+\usepackage{seqsplit}
+\emergencystretch=3em
+\makeatletter
+\newcommand{\ttwrap}[1]{{\ttfamily\hyphenchar\font=`\-\relax\seqsplit{#1}}}
+\makeatother
+\usepackage{hyperref}
+
+\captionsetup{labelfont=normalfont, font=small}
+\renewcommand{\tablename}{Tabella}
+\renewcommand{\figurename}{Figura}
+
+\newcommand{\disegnoinstallazione}{%
+\begin{tikzpicture}[x=0.95cm, y=0.95cm]
+  \definecolor{skybad}{RGB}{48,36,28}
+  \definecolor{skyok}{RGB}{12,22,42}
+  \definecolor{wall}{RGB}{196,198,204}
+  \definecolor{walldk}{RGB}{118,122,132}
+  \definecolor{win}{RGB}{255,214,140}
+  \definecolor{lamp}{RGB}{255,196,72}
+  \definecolor{road}{RGB}{42,44,48}
+  \definecolor{grass}{RGB}{38,52,40}
+
+  % ---------- sinistra: non idoneo ----------
+  \begin{scope}
+    \clip (0,0) rectangle (7.15,7.55);
+    \fill[skybad] (0,0.55) rectangle (7.15,7.55);
+    \fill[white, opacity=0.18] (0.6,7.1) circle (0.035);
+    \fill[white, opacity=0.18] (1.4,6.5) circle (0.035);
+    \fill[white, opacity=0.18] (2.2,7.25) circle (0.035);
+    \fill[white, opacity=0.18] (3.1,6.7) circle (0.035);
+    \fill[white, opacity=0.18] (4.5,7.15) circle (0.035);
+    \fill[white, opacity=0.18] (5.3,6.4) circle (0.035);
+    \fill[white, opacity=0.18] (6.4,7.0) circle (0.035);
+    \fill[white, opacity=0.18] (1.9,5.9) circle (0.035);
+    \fill[white, opacity=0.18] (6.8,6.2) circle (0.035);
+    \fill[grass] (0,0.55) rectangle (7.15,0.95);
+    \fill[road] (0,0) rectangle (7.15,0.55);
+    \fill[wall] (0.85,0.95) -- (0.85,3.55) -- (4.85,3.55) -- (4.85,0.95) -- cycle;
+    \fill[walldk] (0.85,3.55) -- (1.15,3.95) -- (5.15,3.95) -- (4.85,3.55) -- cycle;
+    \fill[walldk!80] (4.85,0.95) -- (4.85,3.55) -- (5.15,3.95) -- (5.15,1.35) -- cycle;
+    \fill[win] (1.25,1.45) rectangle (1.87,2.17);
+    \fill[win] (2.25,1.45) rectangle (2.87,2.17);
+    \fill[win] (3.25,1.45) rectangle (3.87,2.17);
+    \fill[win] (1.25,2.45) rectangle (1.87,3.17);
+    \fill[win] (2.25,2.45) rectangle (2.87,3.17);
+    \fill[win] (3.25,2.45) rectangle (3.87,3.17);
+    % fotometro sul bordo esposto
+    \fill[white] (4.55,3.95) rectangle (4.95,4.28);
+    \fill[black!80] (4.62,4.28) -- (4.88,4.28) -- (4.75,4.48) -- cycle;
+    % lampione alto, alone e raggio sull'ottica
+    \fill[black!70] (6.05,0.55) rectangle (6.22,4.55);
+    \fill[lamp, opacity=0.22] (6.14,4.78) -- (0.2,0.55) -- (7.15,0.55) -- cycle;
+    \fill[lamp, opacity=0.35] (6.14,4.78) -- (4.45,4.20) -- (5.05,4.20) -- cycle;
+    \fill[lamp] (6.14,4.78) circle (0.26);
+    \fill[lamp!40!white] (6.14,4.78) circle (0.10);
+    \draw[lamp, line width=1.05pt] (6.14,4.78) -- (4.75,4.38);
+    % campo di vista sporco
+    \fill[lamp, opacity=0.20] (4.75,4.48) -- (3.55,7.55) -- (5.95,7.55) -- cycle;
+    \draw[lamp!70!red, line width=0.7pt] (4.75,4.48) -- (3.55,7.55);
+    \draw[lamp!70!red, line width=0.7pt] (4.75,4.48) -- (5.95,7.55);
+  \end{scope}
+  \draw[linegray, line width=0.6pt] (0,0) rectangle (7.15,7.55);
+
+  % ---------- destra: idoneo ----------
+  \begin{scope}[xshift=7.85cm]
+    \clip (0,0) rectangle (7.15,7.55);
+    \fill[skyok] (0,0.55) rectangle (7.15,7.55);
+    \fill[white] (0.5,7.15) circle (0.045);
+    \fill[white] (1.2,6.55) circle (0.045);
+    \fill[white] (1.9,7.35) circle (0.045);
+    \fill[white] (2.7,6.8) circle (0.045);
+    \fill[white] (3.4,7.2) circle (0.045);
+    \fill[white] (4.2,6.5) circle (0.045);
+    \fill[white] (5.1,7.3) circle (0.045);
+    \fill[white] (5.9,6.7) circle (0.045);
+    \fill[white] (6.6,7.1) circle (0.045);
+    \fill[white] (0.9,5.85) circle (0.045);
+    \fill[white] (2.3,5.7) circle (0.045);
+    \fill[white] (4.8,5.95) circle (0.045);
+    \fill[white] (6.3,5.75) circle (0.045);
+    \fill[white] (3.8,6.15) circle (0.045);
+    \fill[white, opacity=0.12] (1.6,6.9) circle (0.9);
+    \fill[grass] (0,0.55) rectangle (7.15,0.95);
+    \fill[road] (0,0) rectangle (7.15,0.55);
+    \fill[wall] (0.85,0.95) -- (0.85,3.55) -- (4.85,3.55) -- (4.85,0.95) -- cycle;
+    \fill[walldk] (0.85,3.55) -- (1.15,3.95) -- (5.15,3.95) -- (4.85,3.55) -- cycle;
+    \fill[walldk!80] (4.85,0.95) -- (4.85,3.55) -- (5.15,3.95) -- (5.15,1.35) -- cycle;
+    \draw[walldk, line width=1.0pt] (0.85,3.95) -- (0.85,4.22) -- (5.15,4.22) -- (5.15,3.95);
+    \foreach \wx/\wy in {1.25/1.45, 2.25/1.45, 3.25/1.45, 1.25/2.45, 2.25/2.45, 3.25/2.45}
+      {\fill[skyok!35!white] (\wx,\wy) rectangle (\wx+0.62,\wy+0.72);
+       \draw[walldk, line width=0.3pt] (\wx,\wy) rectangle (\wx+0.62,\wy+0.72);}
+    % fotometro al centro del tetto
+    \fill[white] (2.75,4.22) rectangle (3.25,4.55);
+    \fill[black!80] (2.85,4.55) -- (3.15,4.55) -- (3.00,4.78) -- cycle;
+    % campo di vista pulito
+    \fill[cyan!50!white, opacity=0.14] (3.00,4.78) -- (2.05,7.55) -- (3.95,7.55) -- cycle;
+    \draw[cyan!55!white, line width=0.75pt] (3.00,4.78) -- (2.05,7.55);
+    \draw[cyan!55!white, line width=0.75pt] (3.00,4.78) -- (3.95,7.55);
+    % lampione più basso, luce solo sulla strada
+    \fill[black!70] (6.05,0.55) rectangle (6.22,2.85);
+    \fill[lamp, opacity=0.16] (6.14,3.05) -- (5.15,0.55) -- (7.15,0.55) -- cycle;
+    \fill[lamp] (6.14,3.05) circle (0.22);
+    \fill[lamp!40!white] (6.14,3.05) circle (0.08);
+    % cavo verso l'interno (alimentazione), senza scritte
+    \draw[white!70, line width=0.7pt] (2.75,4.38) -- (2.15,4.38) -- (2.15,4.22);
+  \end{scope}
+  \draw[linegray, line width=0.6pt] (7.85,0) rectangle (15.00,7.55);
+
+\end{tikzpicture}%
+}

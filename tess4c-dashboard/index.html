@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard di misurazione della brillanza del cielo notturno</title>
+  <meta name="description" content="Letture NSB delle reti TESS-4C Abruzzo e Umbria e dei fotometri STARS4ALL: mappa, tabella e serie Grafana.">
+  <meta name="author" content="Fabio Tempera">
+  <meta name="theme-color" content="#00050a">
+  <link rel="canonical" href="https://ft2801.github.io/tess4c-dashboard/">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=12">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/app.css?v=33">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <h1>Dashboard di misurazione della brillanza del cielo notturno</h1>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="kpis">
+      <article class="kpi">
+        <div class="label">NSB notturna</div>
+        <div class="value" id="kpi-mag">-</div>
+        <div class="hint" id="kpi-mag-hint">mag / arcsec²</div>
+        <div class="hint hint--sub" id="kpi-coverage" hidden></div>
+      </article>
+      <article class="kpi">
+        <div class="label">Ultimo campione</div>
+        <div class="value value--sm" id="kpi-ago">-</div>
+        <div class="hint" id="kpi-src">api.stars4all.eu</div>
+      </article>
+    </section>
+
+    <section class="panel map-panel">
+      <div class="panel-head">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-view="abruzzo">Abruzzo</button>
+          <button class="tab" data-view="umbria">Umbria</button>
+          <button class="tab" data-view="italia">Italia</button>
+          <button class="tab" data-view="rete">Rete STARS4ALL</button>
+        </div>
+        <label class="switch" title="Mostra sulla mappa e in tabella anche i sensori inattivi (silenti o guasti)">
+          <input type="checkbox" id="toggle-inactive">
+          <span class="switch-track" aria-hidden="true"></span>
+          <span class="switch-label">Mostra inattivi</span>
+        </label>
+      </div>
+      <div class="map-wrap">
+        <div id="map"></div>
+        <div class="legend">
+          <span title="Sito candidato: nessun fotometro STARS4ALL ancora assegnato"><i class="dot" style="background:#6a9bb8"></i> candidato</span>
+          <span title="Notte: NSB misurata oltre 10 mag/arcsec², plausibile per l'istante del campione"><i class="dot" style="background:#3dd68c"></i> notte</span>
+          <span title="Giorno: cielo luminoso misurato dal sensore"><i class="dot" style="background:#c4a574"></i> giorno</span>
+          <span title="Silente: nessun campione recente (nascosto di default)"><i class="dot" style="background:#8c8c8c"></i> silente</span>
+          <span title="Guasto: trasmette ma le misure sono inattendibili (nascosto di default)"><i class="dot" style="background:#e2574c"></i> guasto</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel table-panel">
+      <div class="panel-head">
+        <strong id="list-title">Siti Abruzzo</strong>
+        <div class="panel-tools">
+          <input class="search" id="q" type="search" placeholder="Cerca">
+        </div>
+      </div>
+      <div class="table-wrap" id="table-wrap">
+        <table class="grid">
+          <!-- Solo le due colonne di testo hanno una larghezza preferita: oltre quella
+               il testo va a capo. Le colonne numeriche si dimensionano sul contenuto. -->
+          <colgroup>
+            <col style="width: 112px">
+            <col style="width: 190px">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Nodo</th>
+              <th>Luogo</th>
+              <th>Stato</th>
+              <th>NSB</th>
+              <th>F1</th>
+              <th>F2</th>
+              <th>F3</th>
+              <th>F4</th>
+              <th>T amb.</th>
+              <th>T cielo</th>
+              <th>Freq.</th>
+              <th>zp</th>
+              <th>seq</th>
+              <th>Radio</th>
+              <th>Campione</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy 2026 Fabio Tempera</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/app.js?v=33"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+% =============================================================================
+% Autore: Fabio Tempera
+%
+% DOCUMENTO
+%   Requisiti hardware e software per l'infrastruttura dati della rete
+%   nazionale TESS-4C. Documento interno per il gruppo di lavoro
+%   CieloBuio OdV.
+%
+% COMPILAZIONE
+%   pdflatex infrastruttura.tex, con 2 passate per i riferimenti.
+%   In alternativa: tectonic infrastruttura.tex.
+%   Classe report, pacchetti in packages.sty. Non usare Markdown.
+% =============================================================================
+
+\documentclass[11pt,a4paper]{report}
+
+\usepackage{packages}
+
+\definecolor{nightblue}{RGB}{22,38,58}
+\definecolor{steel}{RGB}{80,100,120}
+\definecolor{linegray}{RGB}{200,200,200}
+\definecolor{softblue}{RGB}{235,241,246}
+\definecolor{softgreen}{RGB}{235,244,238}
+\definecolor{softamber}{RGB}{250,245,232}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+\setcounter{secnumdepth}{0}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{nightblue}}
+  {\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{nightblue}}
+  {\thesubsection}{0.6em}{}
+\titlespacing{\section}{0pt}{1.25em}{0.55em}
+\titlespacing{\subsection}{0pt}{1em}{0.35em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{linegray}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\small\color{steel} CieloBuio OdV, uso interno}
+\fancyhead[R]{\small\color{steel} Infrastruttura dati TESS-4C}
+\fancyfoot[C]{\small\color{steel}\thepage}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=nightblue,
+  urlcolor=nightblue,
+  citecolor=nightblue,
+  pdftitle={Requisiti hardware e software per l'infrastruttura dati della rete nazionale TESS-4C},
+  pdfauthor={Fabio Tempera}
+}
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.2em, topsep=0.25em}
+\setlist[enumerate]{leftmargin=1.6em, itemsep=0.25em, topsep=0.3em}
+
+\newcommand{\infobox}[1]{%
+
+  \begin{center}
+
+  \renewcommand{\arraystretch}{1.5}
+
+  \begin{tabularx}{\linewidth}{X}
+    \arrayrulecolor{linegray}
+    \toprule
+    #1 \\
+    \bottomrule
+  \end{tabularx}
+
+  \end{center}
+
+}
+
+\begin{document}
+
+\begin{center}
+
+{\LARGE\bfseries\color{nightblue} Requisiti hardware e software per l'infrastruttura dati della rete nazionale TESS-4C\par}
+
+\vspace{0.2cm}
+
+{\large Acquisizione, gestione, visualizzazione e conservazione dei dati di 100 o 150 fotometri\par}
+
+\vspace{0.1cm}
+
+{\small CieloBuio OdV\par}
+
+{\small Documento interno di lavoro\par}
+
+{\small Fabio Tempera}
+
+\end{center}
+
+\section*{Oggetto e raccomandazione}
+\addcontentsline{toc}{section}{Oggetto e raccomandazione}
+
+Il presente documento definisce i requisiti di un'infrastruttura nazionale capace di ricevere, verificare, rendere disponibili e conservare in tempo quasi reale i dati di una rete potenziale composta da 100 o 150 fotometri TESS-4C. La proposta mantiene il conferimento alla rete STARS4ALL e introduce una copia nazionale aggiuntiva, sotto il controllo del gruppo di lavoro CieloBuio OdV.
+
+La soluzione raccomandata usa 2 macchine virtuali presso un soggetto ospitante da individuare per il servizio operativo e affida a un archivio di preservazione, anch'esso da individuare, la conservazione delle esportazioni consolidate. Il percorso preferito prevede una sottoscrizione autorizzata ai topic dei fotometri sul broker STARS4ALL. Questa configurazione lascia invariata la configurazione dei nodi e permette al servizio nazionale di ricevere lo stesso flusso. Un server fisico dedicato resta un'alternativa praticabile, ma richiede una sede attrezzata, gestione sistemistica continuativa, ricambi e una copia di sicurezza esterna.
+
+\infobox{%
+\textit{Configurazione raccomandata}: 2 macchine virtuali con 8 vCPU e 32 GB di RAM complessivi, 1 TB SSD utilizzabile per il database, spazio di copia separato, PostgreSQL con partizionamento temporale, servizio di acquisizione MQTT, API REST versionata, dashboard pubblica, Grafana e Prometheus, esportazioni mensili IDA e preservazione presso l'archivio da individuare.
+}
+
+La raccomandazione presuppone 4 accordi preliminari: UCM o STARS4ALL concede un accesso in lettura al broker; le parti autorizzano la duplicazione del flusso e definiscono la licenza; UCM conferma le funzioni di sicurezza e consegna del firmware TESS-4C; il soggetto ospitante rende disponibili macchine virtuali e servizi continuativi. La Sezione~\ref{sec:decisioni} separa questi accordi dai requisiti già determinabili.
+
+\section*{Carico atteso e livelli di servizio}
+\addcontentsline{toc}{section}{Carico atteso e livelli di servizio}
+
+La stima assume 1 campione al minuto per fotometro. Il messaggio TESS-4C esaminato occupa 256 byte; una previsione prudente usa 350 byte per tenere conto di variazioni del payload. La Tabella~\ref{tab:carico} riporta il carico applicativo, senza includere protocollo, indici, copie di sicurezza e file temporanei.
+
+\begin{table}[ht!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\small
+
+\begin{tabularx}{\linewidth}{@{}X r r@{}}
+\toprule
+Voce & 100 nodi & 150 nodi \\
+\midrule
+Campioni al giorno & 144.000 & 216.000 \\
+Campioni all'anno & 52.560.000 & 78.840.000 \\
+Carico medio & 1,67 messaggi/s & 2,50 messaggi/s \\
+Payload annuo a 256 byte & 13,46 GB & 20,18 GB \\
+Payload annuo a 350 byte & 18,40 GB & 27,59 GB \\
+\bottomrule
+\end{tabularx}
+
+\caption{Carico atteso con 1 campione al minuto per nodo e 365 giorni di esercizio.}
+\label{tab:carico}
+\end{table}
+
+Il carico medio è modesto per un sistema corrente. La capacità di calcolo non costituisce quindi il vincolo principale. La continuità del servizio, la tracciabilità delle calibrazioni, il controllo delle lacune, la sicurezza, gli indici del database e le copie di sicurezza determinano il dimensionamento. Il progetto deve riservare fino a 100 GB all'anno per database, indici e margine operativo, poi deve correggere la stima con le misure del progetto pilota.
+
+La Tabella~\ref{tab:servizio} propone livelli verificabili. Il tempo di ripristino decorre dalla presa in carico dell'incidente. La disponibilità riguarda i servizi centrali e non comprende le interruzioni elettriche o di rete dei siti ospitanti.
+
+\begin{table}[ht!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\small
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\toprule
+Indicatore & Requisito iniziale \\
+\midrule
+Disponibilità mensile & almeno 99,5\% per acquisizione, API e dashboard \\
+Latenza di ricezione & 95\% dei messaggi entro 120 s dalla pubblicazione \\
+RPO & perdita massima di 15 min per i dati centrali \\
+RTO & ripristino entro 8 h dalla presa in carico \\
+Coda locale & almeno 48 h di messaggi sul servizio di acquisizione \\
+Conservazione & dati grezzi e normalizzati online; pacchetti mensili preservati presso l'archivio da individuare \\
+\bottomrule
+\end{tabularx}
+
+\caption{Livelli di servizio proposti per la prima fase di esercizio.}
+\label{tab:servizio}
+\end{table}
+
+\FloatBarrier
+
+\section*{Architettura raccomandata}
+\addcontentsline{toc}{section}{Architettura raccomandata}
+
+La Figura~\ref{fig:architettura} mostra il percorso raccomandato. I fotometri continuano a pubblicare su STARS4ALL. Un sottoscrittore nazionale autorizzato riceve i topic pertinenti, valida ogni messaggio, conserva il payload originale in una coda locale e scrive una rappresentazione normalizzata nel database. L'API alimenta il cruscotto pubblico e gli strumenti di analisi. Un processo separato produce pacchetti mensili IDA con metadati, manifest e checksum per l'archivio da individuare.
+
+\begin{figure}[ht!]
+\centering
+
+\begin{tikzpicture}[
+  scale=0.88,
+  transform shape,
+  node distance=1.25cm and 1.05cm,
+  box/.style={draw=nightblue, rounded corners=2pt, line width=0.7pt, minimum width=3.2cm, minimum height=1.15cm, text width=2.75cm, align=center, fill=softblue, text=nightblue},
+  store/.style={draw=nightblue, cylinder, shape border rotate=90, aspect=0.28, line width=0.7pt, minimum width=2.8cm, minimum height=1.35cm, text width=2.35cm, align=center, fill=softgreen, text=nightblue},
+  archive/.style={draw=steel, rounded corners=2pt, line width=0.7pt, minimum width=3.2cm, minimum height=1.15cm, text width=2.75cm, align=center, fill=softamber, text=nightblue},
+  flow/.style={-{Stealth[length=2.5mm]}, line width=0.8pt, draw=nightblue},
+  every node/.style={font=\small}
+]
+
+\node[box] (nodes) {Fotometri TESS-4C};
+\node[box, right=of nodes] (stars) {Broker MQTT STARS4ALL};
+\node[box, right=of stars] (ingest) {Acquisizione, validazione e coda};
+\node[store, right=of ingest] (db) {PostgreSQL per serie temporali};
+\node[box, below=of ingest] (api) {API REST versionata};
+\node[box, right=of api] (view) {Dashboard, Grafana e Prometheus};
+\node[archive, below=of api] (export) {Esportazioni mensili IDA e manifest};
+\node[archive, right=of export] (archivio) {Archivio di preservazione};
+
+\draw[flow] (nodes) -- node[above, font=\scriptsize] {letture} (stars);
+\draw[flow] (stars) -- node[above, font=\scriptsize] {sottoscrizione} (ingest);
+\draw[flow] (ingest) -- (db);
+\draw[flow] (db) -- (api);
+\draw[flow] (api) -- (view);
+\draw[flow] (api) -- (export);
+\draw[flow] (export) -- (archivio);
+
+\end{tikzpicture}
+
+\caption{Architettura raccomandata per la copia nazionale aggiuntiva dei dati TESS-4C.}
+\label{fig:architettura}
+\end{figure}
+
+La sottoscrizione al broker esistente è la prima scelta, purché UCM o STARS4ALL fornisca credenziali, regole di accesso e documentazione operativa. I topic pubblici esaminati seguono la forma \texttt{STARS4ALL/<identificativo>/reading}; la registrazione usa \texttt{STARS4ALL/register}. Il filtro definitivo deve essere concordato per evitare l'acquisizione di strumenti estranei al progetto nazionale.
+
+Un broker nazionale con collegamento concordato verso STARS4ALL costituisce la scelta alternativa. Questa soluzione richiede una verifica del firmware TESS-4C, della gestione di TLS, delle credenziali, del livello QoS e dell'accodamento durante le interruzioni. L'interrogazione periodica dell'API STARS4ALL può sostenere una fase transitoria o il recupero di dati, ma non deve rappresentare il canale primario: un'API orientata alla consultazione può non esporre ogni campione e può introdurre ritardi.
+
+L'infrastruttura non richiede Kafka o Kubernetes. Il volume previsto consente un impianto semplice con servizi Linux, contenitori OCI oppure unità \texttt{systemd}, Ansible e una coda persistente locale.
+
+\section*{Dati e componenti software}
+\addcontentsline{toc}{section}{Dati e componenti software}
+
+Il servizio deve conservare il messaggio originale e una rappresentazione normalizzata. Il payload grezzo permette una nuova elaborazione dopo una correzione dello schema. Le tabelle normalizzate rendono efficienti le ricerche temporali, i confronti tra nodi e la produzione dei file mensili. La Tabella~\ref{tab:dati} raccoglie i gruppi informativi minimi.
+
+\begin{table}[ht!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\small
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\toprule
+Gruppo & Campi richiesti \\
+\midrule
+Identità & identificativo del nodo, numero di serie, modello, firmware, sito e responsabile del dato \\
+Tempo & istante UTC di acquisizione o ricezione, fonte del timestamp, sequenza e istante di inserimento \\
+Fotometria & 4 frequenze, 4 magnitudini, 4 punti zero, filtri, unità e periodo di validità della calibrazione \\
+Stato & temperature, potenza radio, alimentazione, campi diagnostici e stato del nodo \\
+Provenienza & payload JSON originale, versione dello schema, checksum, origine del flusso e versione del software \\
+Qualità & lacuna, duplicato, valore fuori intervallo, calibrazione scaduta, manutenzione e altre condizioni documentate \\
+\bottomrule
+\end{tabularx}
+
+\caption{Contenuto minimo del modello dati nazionale.}
+\label{tab:dati}
+\end{table}
+
+Il server STARS4ALL esaminato attribuisce il timestamp IDA alla ricezione del messaggio. Il servizio nazionale deve quindi usare UTC, sincronizzazione NTP e un campo che dichiari l'origine temporale. Il numero di sequenza aiuta a rilevare lacune, riavvii e duplicati. Il sistema deve mantenere anche i metadati di sito, strumento e calibrazione in tabelle con intervalli di validità, perché una modifica delle coordinate, del filtro o del punto zero non può alterare retroattivamente la serie storica.
+
+\begin{table}[ht!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\small
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\toprule
+Componente & Requisito \\
+\midrule
+Acquisizione & client MQTT con riconnessione, coda persistente, convalida JSON, log strutturati e inserimenti idempotenti \\
+Database & PostgreSQL in versione supportata dal soggetto ospitante, partizioni mensili, migrazioni versionate e ruoli separati \\
+API & percorso \texttt{/v1}, specifica OpenAPI, paginazione, filtri temporali, limiti di richiesta e formati JSON e CSV \\
+Visualizzazione & dashboard pubblica adattata alla nuova API e Grafana per controlli scientifici e operativi \\
+Monitoraggio & Prometheus, Alertmanager, metriche su ultimo dato, lacune, errori, spazio, copie e scadenza dei certificati \\
+Esportazione & generazione mensile IDA, controllo dello schema, checksum SHA-256, manifest e metadati della collezione \\
+Esercizio & distribuzione riproducibile, Ansible, registro delle modifiche, ambiente di prova e aggiornamenti pianificati \\
+\bottomrule
+\end{tabularx}
+
+\caption{Componenti software e funzioni richieste.}
+\label{tab:software}
+\end{table}
+
+\Needspace{6\baselineskip}
+
+PostgreSQL con partizionamento temporale nativo è sufficiente per il carico previsto. \mbox{TimescaleDB} può essere adottato se il soggetto ospitante lo gestisce già e ne garantisce l'aggiornamento. La scelta dell'estensione non deve condizionare l'accesso ai dati o le esportazioni. Lo schema JSON, l'API e il formato dei pacchetti devono avere una versione esplicita. Le esportazioni IDA garantiscono continuità con l'archivio di brillanza del cielo; JSON e CSV sostengono l'accesso applicativo e l'analisi.
+
+\FloatBarrier
+
+\section*{Risorse hardware e continuità}
+\addcontentsline{toc}{section}{Risorse hardware e continuità}
+
+La Tabella~\ref{tab:hardware} descrive la configurazione virtuale raccomandata. Le 2 macchine separano il database dai servizi esposti, ma non realizzano un sistema ad alta disponibilità. Il soggetto ospitante può consolidare le funzioni su 1 macchina virtuale con 8 vCPU, 32 GB di RAM e 1 TB SSD quando la piattaforma offre snapshot, ripristino rapido e monitoraggio condiviso.
+
+\begin{table}[ht!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\small
+
+\begin{tabularx}{\linewidth}{@{}l r r X@{}}
+\toprule
+Risorsa & vCPU & RAM & Archiviazione e funzione \\
+\midrule
+VM dati & 4 & 24 GB & 1 TB SSD utilizzabile per PostgreSQL, indici e manutenzione \\
+VM servizi & 4 & 8 GB & 100 GB SSD per acquisizione, coda, API, dashboard e log \\
+Copia separata & n.a. & n.a. & almeno 2 TB su sistema distinto, con versioni e controllo di integrità \\
+Rete & n.a. & n.a. & connettività stabile, DNS, certificati, 1 Gbit/s condiviso e regole di uscita verso il broker \\
+\bottomrule
+\end{tabularx}
+
+\caption{Configurazione virtuale raccomandata.}
+\label{tab:hardware}
+\end{table}
+
+Il server fisico alternativo deve avere almeno 8 core recenti, 32 GB di memoria ECC espandibile a 64 GB, 2 SSD aziendali da 2 TB in RAID 1, interfaccia di gestione remota, 2 alimentatori, 1 collegamento da 1 Gbit/s, gruppo di continuità e garanzia di 5 anni. Un sistema separato deve offrire almeno 4 TB per le copie. Questa opzione ha senso soltanto se una sede assume formalmente alimentazione, rete, sicurezza fisica, aggiornamenti, monitoraggio e sostituzione dei componenti.
+
+Il piano di continuità deve comprendere copie di base periodiche di PostgreSQL, archiviazione continua del registro delle transazioni, snapshot giornalieri, pacchetti mensili immutabili e almeno 1 copia in un dominio amministrativo distinto. Il gruppo tecnico deve eseguire una prova di ripristino ogni 6 mesi. L'archivio di preservazione deve ricevere prodotti consolidati con checksum, manifest, metadati e Data Management Plan; l'archivio non deve ospitare il database operativo.
+
+I servizi pubblici devono usare HTTPS. Il database non deve essere esposto a Internet. Le credenziali devono essere distinte per acquisizione, API e amministrazione, conservate in un gestore di segreti e limitate secondo il principio del minimo privilegio. I log amministrativi devono essere tracciati. Le coordinate e i dati scientifici possono essere pubblici secondo la licenza concordata, mentre i contatti personali e le credenziali dei siti devono rimanere riservati.
+
+La tratta tra il fotometro e il broker richiede una verifica specifica. Il firmware pubblico disponibile non permette di concludere che TESS-4C supporti TLS, credenziali individuali, pubblicazione persistente e accodamento fuori linea. Il progetto pilota deve misurare questi comportamenti. Un broker nazionale esposto senza cifratura non costituisce una soluzione accettabile; in assenza di TLS nel fotometro serve un gateway di sito o un meccanismo protetto concordato con UCM.
+
+\Needspace{12\baselineskip}
+
+\section*{Decisioni, progetto pilota e responsabilità}
+\label{sec:decisioni}
+\addcontentsline{toc}{section}{Decisioni, progetto pilota e responsabilità}
+
+La Tabella~\ref{tab:decisioni} distingue i requisiti definiti dagli accordi esterni ancora necessari.
+
+\begin{table}[ht!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\footnotesize
+
+\begin{tabularx}{\linewidth}{@{}p{2.2cm} X X@{}}
+\toprule
+Ambito & Requisito già definito & Decisione o verifica necessaria \\
+\midrule
+Flusso & STARS4ALL resta attivo e la copia nazionale riceve ogni campione & UCM o STARS4ALL concede sottoscrizione, ACL e diritto di duplicazione \\
+Sicurezza & servizi centrali cifrati, ruoli separati e database non pubblico & UCM conferma TLS, autenticazione, QoS e coda del firmware TESS-4C \\
+Dati & payload grezzo, schema normalizzato, IDA mensile, checksum e metadati & le parti fissano titolarità, licenza, attribuzione e periodo di conservazione \\
+Esercizio & PostgreSQL, API versionata, monitoraggio, copie e prove di ripristino & Il soggetto ospitante assegna VM, DNS, certificati, reperibilità e referenti sistemistici \\
+Preservazione & pacchetti consolidati con Data Management Plan per l'archivio di preservazione & l'archivio approva collezione, modalità di deposito e responsabilità di curatela \\
+\bottomrule
+\end{tabularx}
+
+\caption{Requisiti definiti e accordi ancora necessari.}
+\label{tab:decisioni}
+\end{table}
+
+Il progetto deve iniziare con 5 o 10 fotometri per 6 settimane. La fase iniziale deve fissare schema, identificativi, metadati, licenza e accesso al broker. Il progetto pilota deve poi verificare perdita e duplicazione dei messaggi, comportamento durante 1 interruzione di 24 h, timestamp, riavvio del dispositivo, calibrazioni, crescita reale del database, esportazione IDA, allarmi e ripristino da copia. Un generatore deve sostenere 10 messaggi al secondo per 24 h, pari a 4 volte il carico medio previsto per 150 nodi.
+
+L'accettazione richiede 5 risultati: il servizio acquisisce almeno il 99,5\% dei messaggi osservati sul broker nelle condizioni nominali; il database non contiene duplicati canonici; ogni lacuna viene segnalata; 1 pacchetto mensile supera il controllo di schema e checksum; 1 ripristino completo rientra nel tempo previsto. Dopo il progetto pilota, il gruppo può attivare i primi 20 nodi e autorizzare l'estensione a 100 o 150 nodi sulla base delle misure raccolte.
+
+CieloBuio cura il registro dei nodi, i criteri scientifici di qualità e i contenuti pubblici. Il soggetto ospitante cura piattaforma, rete, copie e collegamento con l'archivio di preservazione secondo gli accordi da definire. Il gruppo software cura acquisizione, schema, API, dashboard e distribuzioni. UCM o STARS4ALL documenta il flusso sorgente e autorizza la sottoscrizione. Ogni ente ospitante mantiene alimentazione, connettività e installazione del proprio fotometro. Un referente nominato per ciascun ambito deve approvare modifiche e incidenti secondo una matrice di responsabilità condivisa.
+
+\section*{Fonti tecniche}
+\addcontentsline{toc}{section}{Fonti tecniche}
+
+\small
+
+Le caratteristiche del TESS-4C e della rete sono descritte da GUAIX, Universidad Complutense de Madrid, in \url{https://guaix.fis.ucm.es/tess/TESS-4C} e \url{https://guaix.fis.ucm.es/tess/}.
+
+L'implementazione del server, i topic MQTT e gli strumenti IDA sono documentati nei repository STARS4ALL \url{https://github.com/STARS4ALL/tessdb-server} e \url{https://github.com/STARS4ALL/TESS-IDA-TOOLS}. Il protocollo MQTT è definito da OASIS in \url{https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html}.
+
+I principi FAIR sono disponibili in \url{https://www.go-fair.org/fair-principles/}.
+
+\end{document}
+ 2026.
+
+\end{document}

@@ -1,0 +1,27 @@
+{
+  "region": "Abruzzo",
+  "network": "TESS-4C",
+  "updated": "2026-09-01",
+  "sites": [
+    {"id": 1, "name": "Pescara, centro", "category": "urbano grande", "comune": "Pescara", "prov": "PE", "lat": 42.464278, "lon": 14.214189, "quota": 19, "tessName": null},
+    {"id": 2, "name": "L'Aquila, Piazza del Duomo", "category": "urbano grande", "comune": "L'Aquila", "prov": "AQ", "lat": 42.34887, "lon": 13.39818, "quota": 717, "tessName": null},
+    {"id": 3, "name": "Avezzano", "category": "urbano grande", "comune": "Avezzano", "prov": "AQ", "lat": 42.030975, "lon": 13.426372, "quota": 689, "tessName": null},
+    {"id": 4, "name": "Sulmona", "category": "urbano medio", "comune": "Sulmona", "prov": "AQ", "lat": 42.048025, "lon": 13.926198, "quota": 399, "tessName": null},
+    {"id": 5, "name": "Lanciano", "category": "urbano medio", "comune": "Lanciano", "prov": "CH", "lat": 42.231211, "lon": 14.390472, "quota": 272, "tessName": null},
+    {"id": 6, "name": "Giulianova", "category": "urbano medio", "comune": "Giulianova", "prov": "TE", "lat": 42.752517, "lon": 13.956686, "quota": 70, "tessName": null},
+    {"id": 7, "name": "Guardiagrele", "category": "urbano piccolo", "comune": "Guardiagrele", "prov": "CH", "lat": 42.189222, "lon": 14.221592, "quota": 591, "tessName": null},
+    {"id": 8, "name": "Civitella del Tronto", "category": "urbano piccolo", "comune": "Civitella del Tronto", "prov": "TE", "lat": 42.771944, "lon": 13.666667, "quota": 585, "tessName": null},
+    {"id": 9, "name": "Castel del Monte", "category": "urbano piccolo", "comune": "Castel del Monte", "prov": "AQ", "lat": 42.36544, "lon": 13.72592, "quota": 1336, "tessName": null},
+    {"id": 10, "name": "Vasto, centro", "category": "costa", "comune": "Vasto", "prov": "CH", "lat": 42.111589, "lon": 14.708219, "quota": 150, "tessName": null},
+    {"id": 11, "name": "Atessa", "category": "collina interna", "comune": "Atessa", "prov": "CH", "lat": 42.0703, "lon": 14.452, "quota": 403, "tessName": null},
+    {"id": 12, "name": "Loreto Aprutino", "category": "collina interna", "comune": "Loreto Aprutino", "prov": "PE", "lat": 42.434722, "lon": 13.983611, "quota": 261, "tessName": null},
+    {"id": 13, "name": "Corvara", "category": "collina interna", "comune": "Corvara", "prov": "PE", "lat": 42.275171, "lon": 13.873535, "quota": 631, "tessName": null},
+    {"id": 14, "name": "Rifugio Bruno Pomilio", "category": "montagna", "comune": "Rapino", "prov": "CH", "lat": 42.160736, "lon": 14.132572, "quota": 1894, "tessName": null},
+    {"id": 15, "name": "Prati di Tivo", "category": "montagna", "comune": "Pietracamela", "prov": "TE", "lat": 42.499722, "lon": 13.559722, "quota": 1451, "tessName": null},
+    {"id": 16, "name": "Civitella Alfedena", "category": "area protetta", "comune": "Civitella Alfedena", "prov": "AQ", "lat": 41.766389, "lon": 13.943611, "quota": 1083, "tessName": null},
+    {"id": 17, "name": "Caramanico Terme", "category": "area protetta", "comune": "Caramanico Terme", "prov": "PE", "lat": 42.156446, "lon": 14.003189, "quota": 603, "tessName": null},
+    {"id": 18, "name": "Pescasseroli", "category": "area protetta", "comune": "Pescasseroli", "prov": "AQ", "lat": 41.805, "lon": 13.789722, "quota": 1145, "tessName": null},
+    {"id": 19, "name": "Campo Imperatore", "category": "sito scientifico", "comune": "L'Aquila", "prov": "AQ", "lat": 42.444158, "lon": 13.557875, "quota": 2147, "tessName": null},
+    {"id": 20, "name": "Collurania", "category": "sito scientifico", "comune": "Teramo", "prov": "TE", "lat": 42.654025, "lon": 13.731322, "quota": 396, "tessName": null}
+  ]
+}

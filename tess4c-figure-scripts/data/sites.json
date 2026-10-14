@@ -1,0 +1,318 @@
+{
+  "region": "Abruzzo",
+  "network": "TESS-4C",
+  "updated": "2026-09-01",
+  "viirs_year": 2025,
+  "viirs_unit": "nW cm^-2 sr^-1",
+  "comment": "Unico file dati della regione: nodi (sites) e inquadratura della mappa (map). Per un'altra regione sostituire i record in sites e i limiti geografici in map.",
+  "sites": [
+    {
+      "id": 1,
+      "name": "Pescara, centro",
+      "short": "Pescara",
+      "category": "urbano grande",
+      "comune": "Pescara",
+      "prov": "PE",
+      "lat": 42.464278,
+      "lon": 14.214189,
+      "quota": 19,
+      "popolazione": 118487,
+      "viirs": 94.044
+    },
+    {
+      "id": 2,
+      "name": "L'Aquila, Piazza del Duomo",
+      "short": "L'Aquila",
+      "category": "urbano grande",
+      "comune": "L'Aquila",
+      "prov": "AQ",
+      "lat": 42.34887,
+      "lon": 13.39818,
+      "quota": 717,
+      "popolazione": 70803,
+      "viirs": 95.36
+    },
+    {
+      "id": 3,
+      "name": "Avezzano",
+      "short": "Avezzano",
+      "category": "urbano grande",
+      "comune": "Avezzano",
+      "prov": "AQ",
+      "lat": 42.030975,
+      "lon": 13.426372,
+      "quota": 689,
+      "popolazione": 41238,
+      "viirs": 46.795
+    },
+    {
+      "id": 4,
+      "name": "Sulmona",
+      "short": "Sulmona",
+      "category": "urbano medio",
+      "comune": "Sulmona",
+      "prov": "AQ",
+      "lat": 42.048025,
+      "lon": 13.926198,
+      "quota": 399,
+      "popolazione": 21610,
+      "viirs": 57.356
+    },
+    {
+      "id": 5,
+      "name": "Lanciano",
+      "short": "Lanciano",
+      "category": "urbano medio",
+      "comune": "Lanciano",
+      "prov": "CH",
+      "lat": 42.231211,
+      "lon": 14.390472,
+      "quota": 272,
+      "popolazione": 33843,
+      "viirs": 37.754
+    },
+    {
+      "id": 6,
+      "name": "Giulianova",
+      "short": "Giulianova",
+      "category": "urbano medio",
+      "comune": "Giulianova",
+      "prov": "TE",
+      "lat": 42.752517,
+      "lon": 13.956686,
+      "quota": 70,
+      "popolazione": 23556,
+      "viirs": 34.295
+    },
+    {
+      "id": 7,
+      "name": "Guardiagrele",
+      "short": "Guardiagrele",
+      "category": "urbano piccolo",
+      "comune": "Guardiagrele",
+      "prov": "CH",
+      "lat": 42.189222,
+      "lon": 14.221592,
+      "quota": 591,
+      "popolazione": 8161,
+      "viirs": 15.008
+    },
+    {
+      "id": 8,
+      "name": "Civitella del Tronto",
+      "short": "Civitella del Tronto",
+      "category": "urbano piccolo",
+      "comune": "Civitella del Tronto",
+      "prov": "TE",
+      "lat": 42.771944,
+      "lon": 13.666667,
+      "quota": 585,
+      "popolazione": 4555,
+      "viirs": 8.304
+    },
+    {
+      "id": 9,
+      "name": "Castel del Monte",
+      "short": "Castel del Monte",
+      "category": "urbano piccolo",
+      "comune": "Castel del Monte",
+      "prov": "AQ",
+      "lat": 42.36544,
+      "lon": 13.72592,
+      "quota": 1336,
+      "popolazione": 379,
+      "viirs": 20.408
+    },
+    {
+      "id": 10,
+      "name": "Vasto, centro",
+      "short": "Vasto",
+      "category": "costa",
+      "comune": "Vasto",
+      "prov": "CH",
+      "lat": 42.111589,
+      "lon": 14.708219,
+      "quota": 150,
+      "popolazione": 40920,
+      "viirs": 75.646
+    },
+    {
+      "id": 11,
+      "name": "Atessa",
+      "short": "Atessa",
+      "category": "collina interna",
+      "comune": "Atessa",
+      "prov": "CH",
+      "lat": 42.0703,
+      "lon": 14.452,
+      "quota": 403,
+      "popolazione": 10208,
+      "viirs": 16.736
+    },
+    {
+      "id": 12,
+      "name": "Loreto Aprutino",
+      "short": "Loreto Aprutino",
+      "category": "collina interna",
+      "comune": "Loreto Aprutino",
+      "prov": "PE",
+      "lat": 42.434722,
+      "lon": 13.983611,
+      "quota": 261,
+      "popolazione": 7037,
+      "viirs": 28.574
+    },
+    {
+      "id": 13,
+      "name": "Corvara",
+      "short": "Corvara",
+      "category": "collina interna",
+      "comune": "Corvara",
+      "prov": "PE",
+      "lat": 42.275171,
+      "lon": 13.873535,
+      "quota": 631,
+      "popolazione": 186,
+      "viirs": 2.36
+    },
+    {
+      "id": 14,
+      "name": "Rifugio Bruno Pomilio",
+      "short": "Rifugio Pomilio",
+      "category": "montagna",
+      "comune": "Rapino",
+      "prov": "CH",
+      "lat": 42.160736,
+      "lon": 14.132572,
+      "quota": 1894,
+      "popolazione": null,
+      "viirs": 0.0
+    },
+    {
+      "id": 15,
+      "name": "Prati di Tivo",
+      "short": "Prati di Tivo",
+      "category": "montagna",
+      "comune": "Pietracamela",
+      "prov": "TE",
+      "lat": 42.499722,
+      "lon": 13.559722,
+      "quota": 1451,
+      "popolazione": 196,
+      "viirs": 2.338
+    },
+    {
+      "id": 16,
+      "name": "Civitella Alfedena",
+      "short": "Civitella Alfedena",
+      "category": "area protetta",
+      "comune": "Civitella Alfedena",
+      "prov": "AQ",
+      "lat": 41.766389,
+      "lon": 13.943611,
+      "quota": 1083,
+      "popolazione": 287,
+      "viirs": 6.084
+    },
+    {
+      "id": 17,
+      "name": "Caramanico Terme",
+      "short": "Caramanico Terme",
+      "category": "area protetta",
+      "comune": "Caramanico Terme",
+      "prov": "PE",
+      "lat": 42.156446,
+      "lon": 14.003189,
+      "quota": 603,
+      "popolazione": 1703,
+      "viirs": 16.854
+    },
+    {
+      "id": 18,
+      "name": "Pescasseroli",
+      "short": "Pescasseroli",
+      "category": "area protetta",
+      "comune": "Pescasseroli",
+      "prov": "AQ",
+      "lat": 41.805,
+      "lon": 13.789722,
+      "quota": 1145,
+      "popolazione": 1993,
+      "viirs": 12.972
+    },
+    {
+      "id": 19,
+      "name": "Campo Imperatore",
+      "short": "Campo Imperatore",
+      "category": "sito scientifico",
+      "comune": "L'Aquila",
+      "prov": "AQ",
+      "lat": 42.444158,
+      "lon": 13.557875,
+      "quota": 2147,
+      "popolazione": null,
+      "viirs": 0.0
+    },
+    {
+      "id": 20,
+      "name": "Collurania",
+      "short": "Collurania",
+      "category": "sito scientifico",
+      "comune": "Teramo",
+      "prov": "TE",
+      "lat": 42.654025,
+      "lon": 13.731322,
+      "quota": 396,
+      "popolazione": null,
+      "viirs": 3.018
+    }
+  ],
+  "map": {
+    "lon0": 13.18,
+    "lon1": 14.9,
+    "lat0": 41.56,
+    "lat1": 42.9,
+    "scale_km": 20,
+    "scale_lon": 13.32,
+    "scale_lat": 41.64,
+    "geojson_regioni_url": "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_regions.geojson",
+    "geojson_province_url": "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_provinces.geojson",
+    "city_labels": [
+      {
+        "text": "Ascoli Piceno",
+        "lat": 42.854,
+        "lon": 13.62
+      },
+      {
+        "text": "Teramo",
+        "lat": 42.658,
+        "lon": 13.78
+      },
+      {
+        "text": "Pescara",
+        "lat": 42.458,
+        "lon": 14.28
+      },
+      {
+        "text": "Chieti",
+        "lat": 42.348,
+        "lon": 14.2
+      },
+      {
+        "text": "L'Aquila",
+        "lat": 42.351,
+        "lon": 13.46
+      },
+      {
+        "text": "Avezzano",
+        "lat": 42.031,
+        "lon": 13.49
+      },
+      {
+        "text": "Sulmona",
+        "lat": 42.048,
+        "lon": 13.99
+      }
+    ]
+  }
+}

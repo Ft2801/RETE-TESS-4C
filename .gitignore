@@ -1,0 +1,45 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor e IDE
+.idea/
+.vscode/
+*.swp
+*~
+*.tmp
+
+# Compilazione LaTeX (file intermedi, i PDF restano nel repository)
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.blg
+*.idx
+*.ind
+*.ilg
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.cache/
+data/cache/
+output/
+
+# Variabili d'ambiente e credenziali
+.env
+.env.*
+
+# Archivi generati per la distribuzione
+*.zip

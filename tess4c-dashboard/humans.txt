@@ -1,0 +1,3 @@
+Author: Fabio Tempera
+Site: https://ft2801.github.io/tess4c-dashboard/
+Language: it

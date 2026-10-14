@@ -1,0 +1,55 @@
+% Autore originale della traduzione: Fabio Tempera
+% Licenza della traduzione: MIT
+% Pacchetti del manuale utente TESS in italiano.
+% Non introdurre Markdown. Figure in [ht!], caption e label in coda.
+% Nessun comando \\ per spezzare il rigo nel testo.
+% URL e stringhe a spaziatura fissa spezzano il rigo senza uscire dai margini.
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{a4paper, top=2.8cm, bottom=2.8cm, left=2.5cm, right=2.5cm, headheight=22pt}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage[htt]{hyphenat}
+\usepackage{seqsplit}
+\usepackage{listings}
+\emergencystretch=3em
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=none,
+  aboveskip=0.6em,
+  belowskip=0.6em
+}
+\usepackage{hyperref}
+
+\captionsetup{labelfont=normalfont, font=small}
+\renewcommand{\tablename}{Tabella}
+\renewcommand{\figurename}{Figura}
+
+\renewcommand{\arraystretch}{1.5}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Manuale utente TESS}
+\fancyhead[R]{\small CieloBuio}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}

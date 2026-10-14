@@ -1,0 +1,29 @@
+{
+  "region": "Umbria",
+  "network": "TESS-4C",
+  "updated": "2026-10-02",
+  "sites": [
+    {"id": 1, "name": "Planetario di Amelia", "category": "sito scientifico", "comune": "Amelia", "prov": "TR", "lat": 42.53233182512465, "lon": 12.386449880067394, "quota": 322, "tessName": null},
+    {"id": 2, "name": "Osservatorio di Polino", "category": "sito scientifico", "comune": "Polino", "prov": "TR", "lat": 42.573782297769725, "lon": 12.853032390141463, "quota": 1142, "tessName": null},
+    {"id": 3, "name": "Osservatorio di Sant'Erasmo", "category": "sito scientifico", "comune": "Terni", "prov": "TR", "lat": 42.615503950077525, "lon": 12.5832726555257, "quota": 654, "tessName": null},
+    {"id": 4, "name": "Eremito di Parrano", "category": "collina interna", "comune": "Parrano", "prov": "TR", "lat": 42.825730681251144, "lon": 12.13260469236429, "quota": 277, "tessName": null},
+    {"id": 5, "name": "Liceo Classico Terni", "category": "urbano grande", "comune": "Terni", "prov": "TR", "lat": 42.56504832588206, "lon": 12.646749182497427, "quota": 132, "tessName": null},
+    {"id": 6, "name": "Oasi di Alviano", "category": "area protetta", "comune": "Alviano", "prov": "TR", "lat": 42.62107342887861, "lon": 12.251594297970522, "quota": 84, "tessName": null},
+    {"id": 7, "name": "Planetario di Perugia", "category": "sito scientifico", "comune": "Perugia", "prov": "PG", "lat": 43.0942663877323, "lon": 12.413163652257564, "quota": 298, "tessName": null},
+    {"id": 8, "name": "Osservatorio di Foligno", "category": "sito scientifico", "comune": "Foligno", "prov": "PG", "lat": 42.95987763754533, "lon": 12.705116816005976, "quota": 238, "tessName": null},
+    {"id": 9, "name": "Liceo Classico Spoleto", "category": "urbano medio", "comune": "Spoleto", "prov": "PG", "lat": 42.73158589749631, "lon": 12.735531209065408, "quota": 382, "tessName": null},
+    {"id": 10, "name": "Isola Polvese", "category": "area protetta", "comune": "Perugia", "prov": "PG", "lat": 43.11786202595692, "lon": 12.136712387295855, "quota": 311, "tessName": null},
+    {"id": 11, "name": "Agriturismo Guinzano", "category": "collina interna", "comune": "Gubbio", "prov": "PG", "lat": 43.25048982543432, "lon": 12.48631134030142, "quota": 553, "tessName": null},
+    {"id": 12, "name": "Istituto Agrario Todi", "category": "urbano piccolo", "comune": "Todi", "prov": "PG", "lat": 42.78735857593245, "lon": 12.409936882342782, "quota": 300, "tessName": null},
+    {"id": 13, "name": "Osservatorio Meteo e Sismico Perugia ANCarabinieri", "category": "sito scientifico", "comune": "Perugia", "prov": "PG", "lat": 42.9502913332125, "lon": 12.400225933063513, "quota": 169, "tessName": null},
+    {"id": 14, "name": "Grupo Astrofili Mizar Umbertide", "category": "sito scientifico", "comune": "Umbertide", "prov": "PG", "lat": 43.30743296123206, "lon": 12.327853585251027, "quota": 245, "tessName": null},
+    {"id": 15, "name": "Liceo Scientifico Città della Pieve", "category": "urbano piccolo", "comune": "Città della Pieve", "prov": "PG", "lat": 42.95668183498394, "lon": 12.003727851171698, "quota": 483, "tessName": null},
+    {"id": 16, "name": "Liceo Statale Città di Castello", "category": "urbano medio", "comune": "Città di Castello", "prov": "PG", "lat": 43.461458435611746, "lon": 12.239509913403548, "quota": 285, "tessName": null},
+    {"id": 17, "name": "Gualdo Tadino", "category": "urbano piccolo", "comune": "Gualdo Tadino", "prov": "PG", "lat": 43.2311492157594, "lon": 12.781378269970586, "quota": 489, "tessName": null},
+    {"id": 18, "name": "Castelluccio di Norcia", "category": "montagna", "comune": "Norcia", "prov": "PG", "lat": 42.82971286558704, "lon": 13.205386432513482, "quota": 1425, "tessName": null},
+    {"id": 19, "name": "Liceo Scientifico Orvieto", "category": "urbano piccolo", "comune": "Orvieto", "prov": "TR", "lat": 42.717658560389346, "lon": 12.110462336112239, "quota": 324, "tessName": null},
+    {"id": 20, "name": "Istituto Omnicomprensivo Cascia", "category": "urbano piccolo", "comune": "Cascia", "prov": "PG", "lat": 42.71606242056024, "lon": 13.018419869983402, "quota": 653, "tessName": null},
+    {"id": 21, "name": "Colfiorito", "category": "area protetta", "comune": "Foligno", "prov": "PG", "lat": 43.02558701425389, "lon": 12.887448146854474, "quota": 761, "tessName": null},
+    {"id": 22, "name": "Osservatorio di Coloti", "category": "sito scientifico", "comune": "Montone", "prov": "PG", "lat": 43.40157236672193, "lon": 12.376461362023898, "quota": 423, "tessName": null}
+  ]
+}

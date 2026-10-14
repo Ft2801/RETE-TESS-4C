@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ft2801.github.io/tess4c-dashboard/sitemap.xml

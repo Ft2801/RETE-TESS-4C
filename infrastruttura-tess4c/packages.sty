@@ -1,0 +1,37 @@
+% Autore: Fabio Tempera
+% Pacchetti del documento interno sull'infrastruttura dati TESS-4C.
+% Classe prevista: report. Figure e tabelle in posizione [ht!].
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{geometry}
+\geometry{a4paper, top=2.55cm, bottom=2.55cm, left=2.35cm, right=2.35cm, headheight=22pt}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{needspace}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage[htt]{hyphenat}
+\usepackage{seqsplit}
+\emergencystretch=3em
+\makeatletter
+\newcommand{\ttwrap}[1]{{\ttfamily\hyphenchar\font=`\-\relax\seqsplit{#1}}}
+\makeatother
+\usepackage{hyperref}
+
+\captionsetup{labelfont=normalfont, font=small}
+\renewcommand{\tablename}{Tabella}
+\renewcommand{\figurename}{Figura}

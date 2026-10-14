@@ -1,0 +1,80 @@
+% =============================================================================
+% Autore originale: Fabio Tempera
+% Licenza: MIT (vedere LICENSE nel medesimo direttorio)
+%
+% DOCUMENTO
+%   Lettera alle ARPA regionali per proporre una rete regionale di misura della
+%   brillanza del cielo notturno e per sollecitare un finanziamento regionale
+%   dedicato all'installazione delle stazioni presso gli enti del territorio.
+%
+% COMPILAZIONE
+%   pdflatex arpa.tex  (due passate)
+%   Classe report, pacchetti in packages.sty. Non usare Markdown.
+% =============================================================================
+
+\documentclass[11pt,a4paper]{report}
+
+\usepackage{packages}
+
+\definecolor{nightblue}{RGB}{22,38,58}
+\definecolor{steel}{RGB}{80,100,120}
+\definecolor{linegray}{RGB}{200,200,200}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{linegray}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\small\color{steel} CieloBuio OdV}
+\fancyhead[R]{\small\color{steel} Proposta alle ARPA regionali, rete TESS-4C}
+\fancyfoot[C]{\small\color{steel}\thepage}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=nightblue,
+  pdftitle={Proposta di collaborazione alle ARPA regionali. Rete TESS-4C},
+  pdfauthor={Fabio Tempera}
+}
+
+\setlist[itemize]{leftmargin=1.4em, itemsep=0.25em, topsep=0.3em}
+
+\begin{document}
+
+\noindent Alla Direzione generale
+
+\noindent dell'Agenzia regionale per la protezione dell'ambiente
+
+\vspace{0.8cm}
+
+\noindent \textit{Oggetto}: proposta di collaborazione per una rete regionale di misura della brillanza del cielo notturno
+
+\vspace{0.8cm}
+
+\noindent Con questa lettera si propone un'ipotesi di collaborazione per estendere su base regionale la rete TESS-4C, promossa da CieloBuio OdV.
+
+La rete è costituita da stazioni fotometriche a terra che misurano la brillanza del cielo notturno in modo continuo e confrontabile, collegate alla rete europea STARS4ALL. Lo strumento è il fotometro TESS-4C, a 4 bande, alimentato a 5\,V e dotato di trasmissione dati via WiFi.
+
+Il monitoraggio dell'efficacia delle norme regionali sul contenimento della luce artificiale richiede dati a terra, puntuali e continui. Le stime satellitari restano utili per inquadrare il territorio, ma non sostituiscono una misura locale.
+
+In questo quadro si propone quanto segue.
+
+\begin{itemize}
+\item Una valutazione da parte dell'Agenzia dell'interesse a una rete regionale, con l'eventuale inserimento di stazioni presso enti del territorio.
+\item La richiesta di fondi regionali dedicati, a sostegno dell'acquisto e dell'installazione degli strumenti presso gli enti ospitanti.
+\item Un incontro tecnico per definire siti, requisiti di installazione e modalità di calibrazione.
+\end{itemize}
+
+Il finanziamento regionale permetterebbe di sostenere l'installazione senza che il progetto dipenda da bandi di altra natura. I dati delle stazioni resterebbero consultabili in formato aperto, con una sintesi pubblica per territorio.
+
+Per approfondimenti o per fissare un incontro è possibile contattare il referente del progetto ai recapiti seguenti.
+
+\vspace{0.6cm}
+
+\noindent Cordiali saluti.
+
+\vspace{1.2cm}
+
+\noindent Fabio Tempera, CieloBuio OdV
+
+\noindent \url{fabiot2801@gmail.com} \quad$\cdot$\quad WhatsApp 329 883 5142
+
+\end{document}

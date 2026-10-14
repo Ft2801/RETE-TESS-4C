@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.tmp
+*.swp
+*~
+.idea/
+.vscode/
+*.zip

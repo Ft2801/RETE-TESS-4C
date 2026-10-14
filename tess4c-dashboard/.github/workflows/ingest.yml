@@ -1,0 +1,40 @@
+name: Aggiorna snapshot STARS4ALL
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/ingest.py"
+      - ".github/workflows/ingest.yml"
+
+concurrency:
+  group: ingest
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scarica catalogo e stato
+        run: python scripts/ingest.py
+      - name: Commit dello snapshot
+        run: |
+          git config user.name "tess4c-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/latest.json data/readings.json data/archive
+          if git diff --cached --quiet; then
+            echo "Nessun cambiamento"
+          else
+            git commit -m "snapshot STARS4ALL $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

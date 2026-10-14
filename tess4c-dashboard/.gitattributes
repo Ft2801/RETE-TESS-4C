@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.html text
+*.css text
+*.js text
+*.json text
+*.md text
+*.yml text
+*.svg text
+data/latest.json linguist-generated=true
+data/readings.json linguist-generated=true
